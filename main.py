@@ -75,7 +75,11 @@ def store_detail():
     entry={"title":form["title"],"date":form["date"],"body":form["body"]}
     db[form['date']] = entry
     content=""
-    
+    page=""
+    with open("template/write.html","r") as f:
+       page = f.read()
+       f.close()
+    page=page.replace("{content}",readblog())
     return redirect("/view")
 
   else:
